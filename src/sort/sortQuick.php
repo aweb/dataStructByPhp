@@ -71,4 +71,4 @@ function quickSort($arr, $sort = 'asc')
 $arr = [6, 1, 9, 2, 7, 3, 4, 5, 10, 8];
 $res = quickSort($arr);
 $res2 = quickSort($arr, 'desc');
-var_dump($res, $res2);
+print_r($res, $res2);

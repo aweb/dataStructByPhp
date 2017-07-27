@@ -90,7 +90,7 @@ function sortbubbingByKey($arr, $key, $sort = 'asc')
 $arr = [1, 3, 6, 754, 2, 4, 6, 43];
 $res = sortbubbing($arr);
 $res2 = sortbubbing($arr, 'desc');
-var_dump($res, $res2);
+print_r($res, $res2);
 // 验证结果
 $arr2 = [
     0 => ['name' => 'ben', 'age' => 18],
@@ -99,7 +99,7 @@ $arr2 = [
 ];
 $res = sortbubbingByKey($arr2, 'age');
 $res2 = sortbubbingByKey($arr2, 'age', 'desc');
-var_dump($res, $res2);
+print_r($res, $res2);
 
 
 
