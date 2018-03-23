@@ -9,7 +9,7 @@
  * 简单实现桶排序.
  * 存在问题：灵活度不够，非常浪费空间
  *
- * @param array $arr 要排序的数组.
+ * @param array  $arr  要排序的数组.
  * @param string $sort 排序方式[desc,asc].
  *
  * @return array
