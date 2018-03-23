@@ -16,7 +16,7 @@
  * 复杂度：O(N^2)
  * 基本思想：每次比较两个相邻的元素，如果它们的顺序错误就交换位置。
  *
- * @param array $arr 要排序的数组[1,3,544,23,343].
+ * @param array  $arr  要排序的数组[1,3,544,23,343].
  * @param string $sort 排序方式[desc,asc].
  *
  * @return array
@@ -26,7 +26,7 @@ function sortbubbing($arr, $sort = 'asc')
     $count = count($arr);
     // 冒泡排序的核心实现
     for ($i = 0; $i < $count - 1; $i++) { //n个数排序，制进行n-1趟
-        for ($j = 0; $j < $count - 1; $j++) {
+        for ($j = 0; $j < $count - $i - 1; $j++) {
             // 比较大小并交换.
             if ($sort == 'asc') {
                 if ($arr[$j] > $arr[$j + 1]) {
@@ -54,7 +54,7 @@ function sortbubbing($arr, $sort = 'asc')
  * 复杂度：O(N^2)
  * 基本思想：每次比较两个相邻的元素，如果它们的顺序错误就交换位置。
  *
- * @param array $arr 要排序的数组array(0=> array('name'=>'ben','age'=>18),1=>array('name'=>'tony','age'=>12)).
+ * @param array  $arr  要排序的数组array(0=> array('name'=>'ben','age'=>18),1=>array('name'=>'tony','age'=>12)).
  * @param string $sort 排序方式[desc,asc].
  *
  * @return array
@@ -64,7 +64,7 @@ function sortbubbingByKey($arr, $key, $sort = 'asc')
     $count = count($arr);
     // 冒泡排序的核心实现
     for ($i = 0; $i < $count - 1; $i++) { //n个数排序，制进行n-1趟
-        for ($j = 0; $j < $count - 1; $j++) {
+        for ($j = 0; $j < $count - $i - 1; $j++) {
             // 比较大小并交换.
             if ($sort == 'asc') {
                 if ($arr[$j][$key] > $arr[$j + 1][$key]) {
@@ -90,16 +90,16 @@ function sortbubbingByKey($arr, $key, $sort = 'asc')
 $arr = [1, 3, 6, 754, 2, 4, 6, 43];
 $res = sortbubbing($arr);
 $res2 = sortbubbing($arr, 'desc');
-print_r($res, $res2);
+var_dump($res, $res2);
 // 验证结果
 $arr2 = [
-    0 => ['name' => 'ben', 'age' => 18],
-    1 => ['name' => 'tony', 'age' => 34],
-    2 => ['name' => 'nzing', 'age' => 3]
+    0 => ['name' => 'apple', 'age' => 18],
+    1 => ['name' => 'body', 'age' => 34],
+    2 => ['name' => 'zcar', 'age' => 3]
 ];
 $res = sortbubbingByKey($arr2, 'age');
 $res2 = sortbubbingByKey($arr2, 'age', 'desc');
-print_r($res, $res2);
+var_dump($res, $res2);
 
 
 
