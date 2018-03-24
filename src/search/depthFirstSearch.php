@@ -1,6 +1,6 @@
 <?php
 /**
- * 万能的搜索 -- 深度优先搜索（Depth First Search）-- 全排列
+ * 万能的搜索 -- 深度优先搜索（Depth First Search）
  *
  * Created At 2018/3/24 下午5:41.
  * User: kaiyanh <nzing@aweb.cc>
