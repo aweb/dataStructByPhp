@@ -23,6 +23,7 @@ foreach ($arr as $value) {
  * @param array $books  手上的卡片
  * @param array $box    盒子
  *
+ * @return mixed
  */
 function dfs(int $step, $arr, &$result, &$books, &$box)
 {
@@ -69,6 +70,8 @@ $total = 0;
  * @param  array   $book
  * @param  integer $total
  * @param array    $a
+ *
+ * @return mixed
  */
 function dfsExhaustion($step, &$book, &$total, &$a)
 {
