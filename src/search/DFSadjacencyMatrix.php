@@ -1,6 +1,6 @@
 <?php
 /**
- * 深度优先算法 - 邻接矩阵便利
+ * 深度优先算法 - 邻接矩阵遍历
  *
  * Created At 2018/8/8.
  * User: kaiyanh <nzing@aweb.cc>

@@ -1,0 +1,126 @@
+<?php
+/**
+ *
+ * 原型模式（Prototype Pattern），与工厂模式类似，都是用来创建对象的。利用克隆来生成一个大对象，减少创建时的初始化等操作占用开销
+ *
+ * 1，有些时候，我们需要创建多个类似的大对象。如果直接通过new对象，开销很大，而且new完还得进行重复的初始化工作。
+ *    可能把初始化工作封装起来的，但是对于系统来说，你封不封装，初始化工作还是要执行。,
+ *
+ * 2，原型模式则不同，原型模式是先创建好一个原型对象，然后通过clone这个原型对象来创建新的对象，这样就免去了重复的初始化工作，系统仅需内存拷贝即可。
+ *
+ * 深拷贝：赋值时值完全复制，完全的copy，对其中一个作出改变，不会影响另一个
+ *
+ * 浅拷贝：赋值时，引用赋值，相当于取了一个别名。对其中一个修改，会影响另一个 对象作为参数传递时，也是引用传递
+ * php 对象复制，是复制对象的引用地址，因此使用 $objA = $objB 这种写法时，$objA与$objB会指向相同的内存地址。当$objA 发生变化时，$objB也会受到影响。
+ * 如果我们要$objA对象复制为$objB对象，复制之后，$objA有什么变化，都不会影响$objB。即$objA与$objB是两个独立的对象，但$objB的初始值是由$objA创建的，比较高效的做法是使用clone()方法。
+ * $objB = clone $objA;
+ * $objB的值是在$objA基础加$objA事例对象里clone()方法改变后的实例。
+ * 当对象被复制后，所有的属性中的引用保持不变，指向原来的变量
+ *
+ * Created At 2018/8/3.
+ * User: kaiyanh <nzing@aweb.cc>
+ */
+
+/**
+ * 原型接口
+ */
+abstract class PrototypeAbstract
+{
+    /**
+     * 名称
+     *
+     * @var string
+     */
+    protected $_obj;
+
+    /**
+     * 打印对象名称
+     *
+     * @return sting
+     */
+    abstract public function getName();
+
+    /**
+     * 获取原型对象
+     *
+     * @return object
+     */
+    abstract public function getPrototype();
+}
+
+/**
+ * 原型实体
+ */
+class Prototype extends PrototypeAbstract
+{
+
+    /**
+     * 构造函数
+     *
+     * @param  string $name 属性一
+     *
+     * @return void
+     */
+    public function __construct($obj = '')
+    {
+        $this->_obj = $obj;
+    }
+
+    /**
+     * 魔术方法 设置属性
+     *
+     * @param string $obj   属性名称
+     * @param string $value 属性值
+     */
+    public function __set($obj)
+    {
+        $this->_obj = $obj;
+    }
+
+    /**
+     * 打印对象名称
+     *
+     * @return sting
+     */
+    public function getName()
+    {
+        echo '我是对象'.$this->_obj." \n\n";
+    }
+
+    /**
+     * 获取原型对象 [浅拷贝]
+     *
+     * @return object
+     */
+    public function getPrototype()
+    {
+        return clone $this;
+    }
+
+    /**
+     * 获取原型对象 [深拷贝]
+     *
+     * @return object
+     */
+    public function getPrototypeDeep()
+    {
+        $object = serialize($this);
+        $cloneObject = unserialize($object);
+
+        return clone $cloneObject;
+    }
+}
+
+/************************************ 运行测试 ************************************/
+// 创建一个原型对象
+$prototype = new Prototype();
+// 获取一个原型的clone
+$prototypeCloneOne = $prototype->getPrototype();
+$prototypeCloneOne->_obj = 'one';
+$prototypeCloneOne->getName();
+// 获取一个原型的clone
+$prototypeCloneTwo = $prototype->getPrototype();
+$prototypeCloneTwo->_name = 'two';
+$prototypeCloneTwo->getName();
+// 再次获取$prototypeCloneOne的名称
+$prototypeCloneOne->getName();
